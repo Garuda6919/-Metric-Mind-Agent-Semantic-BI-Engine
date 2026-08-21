@@ -20,7 +20,7 @@ function Reports() {
     const fetchReportData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/dashboard"
+          "fetch(`${import.meta.env.VITE_API_URL}/api/dashboard`)"
         );
 
         const result = await response.json();
