@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
+
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+
 import "../styles/Chat.css";
 
 function Chat() {
@@ -40,28 +42,54 @@ function Chat() {
       },
     ]);
 
+    // Clear input
     setInput("");
     setLoading(true);
 
     try {
+      const API_URL = import.meta.env.VITE_API_URL;
+
+      console.log("API URL:", API_URL);
+      console.log("Chat URL:", `${API_URL}/api/chat`);
+      console.log("Question:", question);
+
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/chat`,
+        `${API_URL}/api/chat`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            message: input,
+            message: question,
           }),
         }
       );
 
-      const data = await response.json();
+      // Read response safely
+      const responseText = await response.text();
+
+      console.log("Chat Status:", response.status);
+      console.log("Chat Raw Response:", responseText);
+
+      let data = {};
+
+      if (responseText) {
+        try {
+          data = JSON.parse(responseText);
+        } catch (jsonError) {
+          throw new Error(
+            `Backend returned invalid JSON: ${responseText.substring(
+              0,
+              200
+            )}`
+          );
+        }
+      }
 
       if (!response.ok) {
         throw new Error(
-          data.message || "Something went wrong"
+          data.message || `Request failed with status ${response.status}`
         );
       }
 
@@ -96,7 +124,7 @@ function Chat() {
 
   // Enter key
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !loading) {
       sendMessage();
     }
   };
@@ -110,7 +138,6 @@ function Chat() {
 
         <div className="content">
           <div className="chat-container">
-
             <h1>🤖 AI Assistant</h1>
 
             <p>
@@ -156,7 +183,6 @@ function Chat() {
                 {loading ? "..." : "Send"}
               </button>
             </div>
-
           </div>
         </div>
       </div>
