@@ -1,0 +1,61 @@
+.traffic-card{
+    background:#ffffff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.traffic-card:hover{
+    transform:translateY(-5px);
+}
+
+.traffic-card h2{
+    margin-bottom:25px;
+    color:#111827;
+}
+
+.traffic-item{
+    margin-bottom:20px;
+}
+
+.traffic-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+    font-weight:600;
+    color:#374151;
+}
+
+.traffic-bar{
+    width:100%;
+    height:10px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.traffic-fill{
+    height:100%;
+    background:linear-gradient(90deg,#10b981,#22c55e);
+    border-radius:20px;
+    transition:width .8s ease;
+}
+
+/* Dark Mode */
+
+body.dark-theme .traffic-card{
+    background:#1f2937;
+}
+
+body.dark-theme .traffic-card h2{
+    color:#ffffff;
+}
+
+body.dark-theme .traffic-header{
+    color:#d1d5db;
+}
+
+body.dark-theme .traffic-bar{
+    background:#374151;
+}

@@ -1,0 +1,105 @@
+.sidebar {
+  width: 260px;
+  min-width: 260px;
+  min-height: calc(100vh - 70px);
+  background: #111827;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #1f2937;
+}
+
+.sidebar-title {
+  color: #9ca3af;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 18px;   /* 15px nundi 18px ki pencham */
+  width: 100%;
+  padding: 15px 18px;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-menu li:hover {
+  background: #2563eb;
+  transform: translateX(5px);
+}
+
+.sidebar-menu li.active {
+  background: #2563eb;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+.menu-icon {
+  font-size: 22px;
+  min-width: 26px;   /* Icon ki fixed width */
+}
+
+.sidebar-menu li span {
+  margin-left: 2px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.logout {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.logout:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.logout:hover {
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.logout .menu-icon {
+  font-size: 20px;
+}
+
+/* Responsive */
+
+@media (max-width: 992px) {
+  .sidebar {
+    width: 220px;
+    min-width: 220px;
+  }
+
+  .sidebar-menu li {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    min-width: 100%;
+    min-height: auto;
+  }
+}

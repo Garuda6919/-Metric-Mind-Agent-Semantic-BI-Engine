@@ -1,0 +1,132 @@
+.chat-container {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+.chat-container h1 {
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.chat-container p {
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+.chat-box {
+  height: 450px;
+  overflow-y: auto;
+  background: #f9fafb;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.message {
+  max-width: 70%;
+  padding: 14px 18px;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.ai {
+  background: #2563eb;
+  color: white;
+}
+
+.user {
+  background: #e5e7eb;
+  color: #111827;
+  margin-left: auto;
+}
+
+.chat-input {
+  display: flex;
+  gap: 15px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.chat-input button {
+  padding: 15px 30px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.chat-input button:hover {
+  background: #1d4ed8;
+}
+.suggested-prompts {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.suggested-prompts button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.suggested-prompts button:hover {
+  background: #1d4ed8;
+}
+.suggested-prompts{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+    margin:25px 0;
+}
+
+.prompt-card{
+    background:#1f2937;
+    color:#fff;
+    border:1px solid #374151;
+    border-radius:14px;
+    padding:18px;
+    display:flex;
+    gap:15px;
+    align-items:flex-start;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.prompt-card span{
+    font-size:28px;
+}
+
+.prompt-card h4{
+    margin:0;
+    font-size:17px;
+}
+
+.prompt-card p{
+    margin-top:6px;
+    color:#cbd5e1;
+    font-size:13px;
+}
+
+.prompt-card:hover{
+    transform:translateY(-4px);
+    border-color:#3b82f6;
+    box-shadow:0 10px 20px rgba(59,130,246,.25);
+}

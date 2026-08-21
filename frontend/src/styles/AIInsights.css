@@ -1,0 +1,47 @@
+.insights-card{
+    background:#ffffff;
+    border-radius:20px;
+    padding:25px;
+    margin-top:30px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.insights-card:hover{
+    transform:translateY(-5px);
+}
+
+.insights-card h2{
+    color:#111827;
+    margin-bottom:20px;
+}
+
+.insights-list{
+    list-style:none;
+    padding:0;
+}
+
+.insights-list li{
+    background:#f3f4f6;
+    padding:14px 18px;
+    margin-bottom:12px;
+    border-radius:12px;
+    color:#374151;
+    font-size:16px;
+    font-weight:500;
+}
+
+/* Dark Mode */
+
+body.dark-theme .insights-card{
+    background:#1f2937;
+}
+
+body.dark-theme .insights-card h2{
+    color:#ffffff;
+}
+
+body.dark-theme .insights-list li{
+    background:#374151;
+    color:#f3f4f6;
+}

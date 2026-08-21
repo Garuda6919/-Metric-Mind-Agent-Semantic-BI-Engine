@@ -1,0 +1,73 @@
+.dashboard-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 30px rgba(37,99,235,.18);
+}
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-icon {
+  width: 55px;
+  height: 55px;
+  background: #2563eb;
+  color: white;
+  border-radius: 14px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.growth {
+  color: #16a34a;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.dashboard-card h2 {
+  margin-top: 22px;
+  margin-bottom: 8px;
+  font-size: 30px;
+  color: #111827;
+}
+
+.dashboard-card p {
+  color: #6b7280;
+  font-size: 16px;
+  margin: 0;
+}
+/* ========================= */
+/* DARK MODE - DASHBOARD CARD */
+/* ========================= */
+
+body.dark-theme .dashboard-card {
+  background: #1f2937;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-theme .dashboard-card h2 {
+  color: #ffffff;
+}
+
+body.dark-theme .dashboard-card p {
+  color: #d1d5db;
+}
+
+body.dark-theme .card-icon {
+  background: #2563eb;
+  color: white;
+}
+
+body.dark-theme .growth {
+  color: #22c55e;
+}

@@ -1,0 +1,17 @@
+GET http://localhost:5000/api/health
+
+###
+
+POST http://localhost:5000/api/chat
+Content-Type: application/json
+
+{
+    "question": "Hello MetricMind"
+}
+
+###
+
+POST http://localhost:5000/api/chat
+Content-Type: application/json
+
+{}

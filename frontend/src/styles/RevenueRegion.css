@@ -1,0 +1,61 @@
+.region-card{
+    background:#ffffff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.region-card:hover{
+    transform:translateY(-5px);
+}
+
+.region-card h2{
+    margin-bottom:25px;
+    color:#111827;
+}
+
+.region-item{
+    margin-bottom:20px;
+}
+
+.region-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+    font-weight:600;
+    color:#374151;
+}
+
+.progress-bar{
+    width:100%;
+    height:10px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    background:linear-gradient(90deg,#2563eb,#3b82f6);
+    border-radius:20px;
+    transition:width .8s ease;
+}
+
+/* ---------- Dark Theme ---------- */
+
+body.dark-theme .region-card{
+    background:#1f2937;
+}
+
+body.dark-theme .region-card h2{
+    color:#ffffff;
+}
+
+body.dark-theme .region-header{
+    color:#d1d5db;
+}
+
+body.dark-theme .progress-bar{
+    background:#374151;
+}

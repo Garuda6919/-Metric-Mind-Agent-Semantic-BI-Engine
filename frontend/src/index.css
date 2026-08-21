@@ -1,0 +1,88 @@
+/* index.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f4f7fc;
+  color: #111827;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+/* ========================= */
+/* DARK THEME */
+/* ========================= */
+
+body.dark-theme {
+  background: #111827;
+  color: #ffffff;
+}
+
+/* Layout */
+
+body.dark-theme .navbar {
+  background: #1f2937;
+}
+
+body.dark-theme .sidebar {
+  background: #111827;
+}
+
+body.dark-theme .content {
+  background: #111827;
+}
+
+/* Cards */
+
+body.dark-theme .dashboard-card,
+body.dark-theme .report-card,
+body.dark-theme .recent-reports,
+body.dark-theme .profile-card,
+body.dark-theme .settings-card,
+body.dark-theme .notification-card,
+body.dark-theme .chart-box,
+body.dark-theme .pie-box,
+body.dark-theme .orders-box,
+body.dark-theme .customers-box {
+  background: #1f2937;
+  color: #ffffff;
+}
+
+/* Inputs */
+
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select {
+  background: #374151;
+  color: #ffffff;
+  border: 1px solid #4b5563;
+}
+
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+  color: #d1d5db;
+}

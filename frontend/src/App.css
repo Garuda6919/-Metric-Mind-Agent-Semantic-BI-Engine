@@ -1,0 +1,17 @@
+/* App.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f4f7fc;
+  font-family: "Poppins", sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+  background: #f4f7fc;
+}

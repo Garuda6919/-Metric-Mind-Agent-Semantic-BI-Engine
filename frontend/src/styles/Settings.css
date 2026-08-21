@@ -1,0 +1,154 @@
+.settings-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.settings-header {
+  margin-bottom: 30px;
+}
+
+.settings-header h1 {
+  font-size: 42px;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.settings-header p {
+  color: #6b7280;
+  font-size: 18px;
+}
+
+.settings-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.settings-card h2 {
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group input,
+.form-group select {
+  padding: 12px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #2563eb;
+}
+
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.setting-row:last-child {
+  border-bottom: none;
+}
+
+.setting-row span {
+  font-size: 17px;
+  color: #111827;
+}
+
+.setting-row input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.save-btn {
+  width: 100%;
+  padding: 15px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.save-btn:hover {
+  background: #1d4ed8;
+}
+/* ========================= */
+/* DARK MODE - SETTINGS */
+/* ========================= */
+
+body.dark-theme .settings-container {
+  background: transparent;
+}
+
+body.dark-theme .settings-header h1 {
+  color: #ffffff;
+}
+
+body.dark-theme .settings-header p {
+  color: #d1d5db;
+}
+
+body.dark-theme .settings-card {
+  background: #1f2937;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-theme .settings-card h2 {
+  color: #ffffff;
+}
+
+body.dark-theme .form-group label {
+  color: #ffffff;
+}
+
+body.dark-theme .form-group input,
+body.dark-theme .form-group select {
+  background: #374151;
+  color: #ffffff;
+  border: 1px solid #4b5563;
+}
+
+body.dark-theme .form-group input::placeholder {
+  color: #d1d5db;
+}
+
+body.dark-theme .setting-row {
+  border-bottom: 1px solid #374151;
+}
+
+body.dark-theme .setting-row span {
+  color: #ffffff;
+}
+
+body.dark-theme .save-btn {
+  background: #2563eb;
+}
+
+body.dark-theme .save-btn:hover {
+  background: #1d4ed8;
+}

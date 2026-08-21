@@ -1,0 +1,144 @@
+.profile-container {
+  padding: 30px;
+}
+
+.profile-header {
+  margin-bottom: 30px;
+}
+
+.profile-header h1 {
+  font-size: 42px;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.profile-header p {
+  color: #6b7280;
+  font-size: 17px;
+}
+
+.profile-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 35px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  max-width: 700px;
+}
+
+.profile-top {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profile-avatar {
+  font-size: 90px;
+  color: #2563eb;
+  margin-bottom: 10px;
+}
+
+.profile-top h2 {
+  margin: 10px 0 5px;
+  color: #111827;
+}
+
+.profile-top p {
+  color: #6b7280;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group input {
+  padding: 12px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #2563eb;
+}
+
+.save-btn {
+  margin-top: 15px;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.save-btn:hover {
+  background: #1d4ed8;
+}
+/* ========================= */
+/* DARK MODE - PROFILE */
+/* ========================= */
+
+body.dark-theme .profile-container {
+  background: #111827;
+}
+
+body.dark-theme .profile-header h1 {
+  color: #ffffff;
+}
+
+body.dark-theme .profile-header p {
+  color: #d1d5db;
+}
+
+body.dark-theme .profile-card {
+  background: #1f2937;
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-theme .profile-top h2 {
+  color: #ffffff;
+}
+
+body.dark-theme .profile-top p {
+  color: #d1d5db;
+}
+
+body.dark-theme .form-group label {
+  color: #ffffff;
+}
+
+body.dark-theme .form-group input {
+  background: #374151;
+  color: #ffffff;
+  border: 1px solid #4b5563;
+}
+
+body.dark-theme .form-group input::placeholder {
+  color: #d1d5db;
+}
+
+body.dark-theme .save-btn {
+  background: #2563eb;
+}
+
+body.dark-theme .save-btn:hover {
+  background: #1d4ed8;
+}
