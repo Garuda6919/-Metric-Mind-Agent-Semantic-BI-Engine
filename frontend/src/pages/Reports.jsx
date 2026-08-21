@@ -20,16 +20,18 @@ function Reports() {
     const fetchReportData = async () => {
       try {
         const response = await fetch(
-          "fetch(`${import.meta.env.VITE_API_URL}/api/dashboard`)"
+          "fetch(``${import.meta.env.VITE_API_URL}/api/dashboard`"
         );
 
         const result = await response.json();
 
-        if (!response.ok || !result.success) {
-          throw new Error("Failed to load report data");
-        }
+if (!response.ok || !result.success) {
+  throw new Error(
+    result.message || "Failed to load report data"
+  );
+}
 
-        setDashboardData(result.data);
+setReportData(result.data);
 
         console.log("REPORT DATA:", result.data);
       } catch (error) {
