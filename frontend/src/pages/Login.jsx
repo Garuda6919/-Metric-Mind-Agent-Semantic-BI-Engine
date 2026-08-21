@@ -18,7 +18,7 @@ function Login() {
 
     try {
       const response = await fetch(
-        "https://metricmind-agentic-semantic-bi-engine.onrender.com/api/login",
+        "http://localhost:5000/api/login",
         {
           method: "POST",
           headers: {
