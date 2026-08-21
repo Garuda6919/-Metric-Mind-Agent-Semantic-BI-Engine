@@ -17,17 +17,19 @@ function Analytics() {
     const fetchAnalyticsData = async () => {
       try {
         const response = await fetch(
-          "fetch(`${import.meta.env.VITE_API_URL}/api/dashboard`)"
+          `${import.meta.env.VITE_API_URL}/api/dashboard`
         );
-
+  
         const result = await response.json();
-
+  
+        console.log("ANALYTICS DATA:", result);
+  
         if (!response.ok || !result.success) {
-          throw new Error("Failed to load analytics data");
+          throw new Error(
+            result.message || "Failed to load analytics data"
+          );
         }
-
-        console.log("ANALYTICS DATA:", result.data);
-
+  
         setAnalyticsData(result.data);
       } catch (error) {
         console.error("Analytics API Error:", error);
@@ -35,7 +37,7 @@ function Analytics() {
         setLoading(false);
       }
     };
-
+  
     fetchAnalyticsData();
   }, []);
 
