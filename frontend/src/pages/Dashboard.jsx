@@ -20,26 +20,44 @@ function Dashboard() {
     salesByCategory: [],
     recentOrders: [],
     recentCustomers: [],
-});
+  });
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
+        console.log("Fetching dashboard data...");
+
         const response = await fetch(
-          "fetch(`${import.meta.env.VITE_API_URL}/api/dashboard`)"
+          `${import.meta.env.VITE_API_URL}/api/dashboard`
         );
+
+        console.log("Dashboard response status:", response.status);
 
         const result = await response.json();
 
+        console.log("DASHBOARD RESPONSE:", result);
+
         if (!response.ok || !result.success) {
-          throw new Error("Failed to load dashboard data");
+          throw new Error(
+            result.message || "Failed to load dashboard data"
+          );
         }
 
         console.log("DASHBOARD DATA:", result.data);
         console.log("RECENT ORDERS:", result.data.recentOrders);
-        setDashboardData(result.data);
+
+        setDashboardData({
+          customers: result.data?.customers ?? 0,
+          revenue: result.data?.revenue ?? 0,
+          orders: result.data?.orders ?? 0,
+          products: result.data?.products ?? 0,
+          monthlySales: result.data?.monthlySales ?? [],
+          salesByCategory: result.data?.salesByCategory ?? [],
+          recentOrders: result.data?.recentOrders ?? [],
+          recentCustomers: result.data?.recentCustomers ?? [],
+        });
       } catch (error) {
         console.error("Dashboard API Error:", error);
       } finally {
@@ -62,6 +80,7 @@ function Dashboard() {
           {/* Welcome Section */}
           <div className="dashboard-header">
             <h1>Welcome back, sekhar reddy</h1>
+
             <p>
               Here's what's happening with your business today.
             </p>
@@ -75,7 +94,7 @@ function Dashboard() {
               value={
                 loading
                   ? "Loading..."
-                  : `₹${dashboardData.revenue.toLocaleString(
+                  : `₹${Number(dashboardData.revenue).toLocaleString(
                       "en-IN",
                       {
                         maximumFractionDigits: 2,
@@ -89,7 +108,7 @@ function Dashboard() {
               value={
                 loading
                   ? "Loading..."
-                  : dashboardData.orders.toLocaleString("en-IN")
+                  : Number(dashboardData.orders).toLocaleString("en-IN")
               }
             />
 
@@ -98,7 +117,7 @@ function Dashboard() {
               value={
                 loading
                   ? "Loading..."
-                  : dashboardData.customers.toLocaleString("en-IN")
+                  : Number(dashboardData.customers).toLocaleString("en-IN")
               }
             />
 
@@ -107,7 +126,7 @@ function Dashboard() {
               value={
                 loading
                   ? "Loading..."
-                  : dashboardData.products.toLocaleString("en-IN")
+                  : Number(dashboardData.products).toLocaleString("en-IN")
               }
             />
 
@@ -117,15 +136,11 @@ function Dashboard() {
           <div className="charts-section">
 
             <div className="chart-box">
-              <Chart
-                data={dashboardData.monthlySales}
-              />
+              <Chart data={dashboardData.monthlySales} />
             </div>
 
             <div className="pie-box">
-              <PieChart
-                data={dashboardData.salesByCategory}
-              />
+              <PieChart data={dashboardData.salesByCategory} />
             </div>
 
           </div>
@@ -135,14 +150,14 @@ function Dashboard() {
 
             <div className="orders-box">
               <RecentOrders
-                data={dashboardData.recentOrders || []}
+                data={dashboardData.recentOrders}
               />
             </div>
 
             <div className="customers-box">
               <RecentCustomers
-    data={dashboardData.recentCustomers || []}
-/>
+                data={dashboardData.recentCustomers}
+              />
             </div>
 
           </div>
