@@ -9,7 +9,8 @@ function Chat() {
   const [messages, setMessages] = useState([
     {
       type: "ai",
-      text: "👋 Hello! I'm your AI Business Assistant. Ask me anything about your business data and analytics.",
+      text:
+        "👋 Hello! I'm your AI Business Assistant. Ask me anything about your business data and analytics.",
     },
   ]);
 
@@ -18,7 +19,7 @@ function Chat() {
 
   const chatBoxRef = useRef(null);
 
-  // Auto scroll
+  // Auto scroll to latest message
   useEffect(() => {
     if (chatBoxRef.current) {
       chatBoxRef.current.scrollTop =
@@ -27,13 +28,17 @@ function Chat() {
   }, [messages, loading]);
 
   const sendMessage = async () => {
+    console.log("=================================");
     console.log("SEND BUTTON CLICKED");
 
     const question = input.trim();
 
-    if (!question || loading) return;
+    // Don't send empty message
+    if (!question || loading) {
+      return;
+    }
 
-    // Add user message
+    // Add user message immediately
     setMessages((prev) => [
       ...prev,
       {
@@ -44,29 +49,46 @@ function Chat() {
 
     // Clear input
     setInput("");
+
+    // Show thinking
     setLoading(true);
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL;
+      // Get production backend URL
+      const API_URL = (
+        import.meta.env.VITE_API_URL || ""
+      ).replace(/\/+$/, "");
+
+      if (!API_URL) {
+        throw new Error(
+          "VITE_API_URL is not configured."
+        );
+      }
+
+      const chatURL = `${API_URL}/api/chat`;
 
       console.log("API URL:", API_URL);
-      console.log("Chat URL:", `${API_URL}/api/chat`);
+      console.log("Chat URL:", chatURL);
       console.log("Question:", question);
 
-      const response = await fetch(
-        `${API_URL}/api/chat`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            message: question,
-          }),
-        }
-      );
+      // Send request to backend
+      const response = await fetch(chatURL, {
+        method: "POST",
 
-      // Read response safely
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+
+        body: JSON.stringify({
+          // IMPORTANT:
+          // Backend expects "question", not "message"
+          question: question,
+        }),
+      });
+
+      // Read response as text first
+      // This prevents Unexpected end of JSON input
       const responseText = await response.text();
 
       console.log("Chat Status:", response.status);
@@ -74,58 +96,83 @@ function Chat() {
 
       let data = {};
 
-      if (responseText) {
+      // Parse JSON safely
+      if (responseText.trim()) {
         try {
           data = JSON.parse(responseText);
         } catch (jsonError) {
+          console.error(
+            "JSON Parse Error:",
+            jsonError
+          );
+
           throw new Error(
             `Backend returned invalid JSON: ${responseText.substring(
               0,
-              200
+              300
             )}`
           );
         }
       }
 
+      // Handle HTTP errors
       if (!response.ok) {
         throw new Error(
-          data.message || `Request failed with status ${response.status}`
+          data?.message ||
+            data?.error ||
+            `Request failed with status ${response.status}`
         );
       }
 
+      // Get AI response from possible backend formats
       const aiReply =
         data?.answer ||
+        data?.data?.answer ||
         data?.data?.aiResponse ||
         data?.aiResponse ||
+        data?.response ||
         data?.message ||
         "I couldn't generate an answer.";
 
+      console.log("AI RESPONSE:", aiReply);
+
+      // Add AI response
       setMessages((prev) => [
         ...prev,
         {
           type: "ai",
-          text: aiReply,
+          text: String(aiReply),
         },
       ]);
     } catch (error) {
       console.error("Chat API Error:", error);
 
+      // Show error inside chat
       setMessages((prev) => [
         ...prev,
         {
           type: "ai",
-          text: `❌ API Error: ${error.message}`,
+          text: `❌ API Error: ${
+            error?.message || "Unable to connect to backend"
+          }`,
         },
       ]);
     } finally {
       setLoading(false);
+
+      console.log("CHAT REQUEST FINISHED");
+      console.log("=================================");
     }
   };
 
   // Enter key
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" && !loading) {
-      sendMessage();
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+
+      if (!loading && input.trim()) {
+        sendMessage();
+      }
     }
   };
 
@@ -138,12 +185,16 @@ function Chat() {
 
         <div className="content">
           <div className="chat-container">
+
+            {/* Header */}
             <h1>🤖 AI Assistant</h1>
 
             <p>
-              Ask questions about your business and analytics.
+              Ask questions about your business and
+              analytics.
             </p>
 
+            {/* Chat messages */}
             <div
               className="chat-box"
               ref={chatBoxRef}
@@ -159,6 +210,7 @@ function Chat() {
                 </div>
               ))}
 
+              {/* Loading */}
               {loading && (
                 <div className="message ai">
                   🤖 Thinking...
@@ -166,23 +218,29 @@ function Chat() {
               )}
             </div>
 
+            {/* Input */}
             <div className="chat-input">
               <input
                 type="text"
                 placeholder="Type your message..."
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
+                onChange={(e) =>
+                  setInput(e.target.value)
+                }
                 onKeyDown={handleKeyDown}
                 disabled={loading}
               />
 
               <button
                 onClick={sendMessage}
-                disabled={loading || !input.trim()}
+                disabled={
+                  loading || !input.trim()
+                }
               >
                 {loading ? "..." : "Send"}
               </button>
             </div>
+
           </div>
         </div>
       </div>
